@@ -1,3 +1,5 @@
+### 互联网大作业
+
 要求：基于Java Socket API搭建简单的HTTP客户端和服务器端程序
 
 说明： 
@@ -21,8 +23,7 @@
 ​    3.6 MIME至少支持三种类型，包含一种非文本类型
 
 
-
-参考资料：
+#### 参考资料：
 
 1. https://docs.oracle.com/javase/tutorial/networking/sockets/index.html
 
@@ -31,7 +32,7 @@
 3. https://tools.ietf.org/html/rfc2616
 
 
-请求报文的设计：
+#### 请求报文的设计：
 
 命令格式：
 GET /0606/01.php HTTP/1.1  请求行
@@ -49,7 +50,7 @@ Content-Type:application/x-www-form-urlencoded
 
 Post请求必须标明Content-Length和Content-Type
 
-请求：
+##### 请求：
 
 1. 请求行
 
@@ -57,27 +58,14 @@ Post请求必须标明Content-Length和Content-Type
 （2）请求的路径
 （3）所用的协议（在本次作业中限定为HTTP1.1，只有这种协议，就不用专门设计信息来存）
 
-
-
 2. 请求头信息(key:value)
 Host:必有
 Content-type:Post有
 Content-length:Post有
 
+3. 请求主体信息(可选)  
 
-
-
-3. 请求主体信息(可选)
-
-
-
-
-
-响应：
-
-
-
-
+##### 响应：
 
 1. 响应行
 
@@ -89,13 +77,7 @@ Content-length:Post有
 
 （3）状态文字：对状态码的解释
 
-
-
-
-
 2. 响应头信息(key:value)
-
-
 
 （1）Date:具体时间
 
@@ -106,16 +88,11 @@ Content-length:Post有
 （4）Content-Type:内容的类型
 
 
-
 (空一行来区分头信息和主体)
-
-
 
 3. 响应主体信息
 
 ​	请求的内容
-
-
 
 状态码详解：http://tomcat.apache.org/tomcat-5.5-doc/servletapi/constant-values.html#javax.servlet.http.HttpServletResponse.SC_NOT_MODIFIED
 服务端参考：https://www.cnblogs.com/xzmblog/p/4505237.html
