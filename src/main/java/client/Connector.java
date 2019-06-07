@@ -27,11 +27,15 @@ public class Connector {
         try{
             OutputStream outputStream = client.getOutputStream();
             outputStream.write(request.getBytes());
-            Thread.sleep(100);
+            Thread.sleep(1000);
             InputStream inputStream = client.getInputStream();
-            byte inputData[] = new byte[inputStream.available()];   //准备一个缓存数组
-            int lenInput = inputStream.read(inputData);
-            String responseText = new String(inputData, 0, lenInput);  //将输入的字节数组转化为可操作的字符串
+            int lenInput=-1;
+            String responseText="";
+            while(lenInput<=0){
+                byte inputData[] = new byte[inputStream.available()];   //准备一个缓存数组
+                lenInput = inputStream.read(inputData);
+                responseText += new String(inputData, 0, lenInput);  //将输入的字节数组转化为可操作的字符串
+            }
             return responseText;
         }catch (InterruptedException e) {
             e.printStackTrace();

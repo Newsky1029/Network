@@ -70,4 +70,6 @@ public class Processor {
         return this.redirectURL;
     }
 
+    public void setURL(String url){this.URL = url;}
+
 }

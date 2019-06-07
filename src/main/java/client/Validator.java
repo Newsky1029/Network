@@ -40,26 +40,6 @@ public class Validator {
                     errorMessage="请求头格式错误，请用键值对形式输入";
                     return false;
                 }
-                else{
-                    if(m.group(1).equals("Host")){
-                        if(m.group(2).equals("localhost"))continue;
-                        String host = m.group(2);
-                        Pattern r1 = Pattern.compile("(\\d[1-3]):(\\d[1-3]):(\\d[1-3]):(\\d[1-3])");
-                        Matcher m1 = r1.matcher(host);
-                        if(!m1.find()){
-                            errorMessage="域名地址错误，请输入正确的域名";
-                            return false;
-                        }
-                        int address[] = new int[4];
-                        for(int i=0;i<4;i++){
-                            address[i] = Integer.parseInt(m1.group(i));
-                            if(address[i]<0||address[i]>255){
-                                errorMessage="域名地址错误，请输入正确的域名";
-                                return false;
-                            }
-                        }
-                    }
-                }
             }
 
             //请求体不做检查

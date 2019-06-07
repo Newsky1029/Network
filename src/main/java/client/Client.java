@@ -33,6 +33,8 @@ public class Client {
         try {
             requestWindow = new RequestWindow(cache);
             requestWindow.init("请求报文");
+            String headText = requestWindow.getHeadText().getText();
+            requestWindow.getHeadText().setText(headText+"\n"+"Host:"+serverAddress);
             request = requestWindow.getRequest();
             validator = new Validator();
             if(!validator.isPassed(request)){
@@ -49,11 +51,13 @@ public class Client {
                 //处理响应报文
                 processor = new Processor(url,cache);
                 int status=processor.deal(result[0],result[1],result[2]);
+
                 if(status==1){
                     //重定向情况
                     this.setRequestWindow();
                     result=this.setResponseWindow();
                     //需要再次处理报文（需要往cache里加东西），但不用再次检测重定向
+                    processor.setURL(processor.getRedirectURL());
                     processor.deal(result[0],result[1],result[2]);
                 }
                 else if(status==2){

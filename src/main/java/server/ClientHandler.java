@@ -29,6 +29,7 @@ public class ClientHandler extends Thread {
 
                 //实现长连接
                 while(!client.isClosed()) {
+
                     int lenInput = -1;
                     String request = null;
 
@@ -49,6 +50,7 @@ public class ClientHandler extends Thread {
                         String response = responseMessage.makeResponseMessage();
                         System.out.println(response);
                         outputStream.write(response.getBytes()); //将响应报文内容写入
+                        outputStream.flush();
                     }
                 }
                 //关闭客户端和服务端的流
