@@ -107,7 +107,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.MOVED_PERMANENTLY;
         response.append(requestMessage.getHttpVersion()+" "+statusCode.code+" "+statusCode.description+"\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Location:"+ Check.get("location") + "\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n\n");
         return response.toString();
@@ -117,7 +116,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.MOVED_TEMPORARILY;
         response.append(requestMessage.getHttpVersion()+" "+statusCode.code+" "+statusCode.description+"\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Location:"+Check.get("location")+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n\n");
         return response.toString();
@@ -127,7 +125,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.NOT_MODIFIED;
         response.append(requestMessage.getHttpVersion() +" "+statusCode.code+" "+statusCode.description + "\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n\n");
         return response.toString();
     }
@@ -136,7 +133,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.NOT_FOUND;
         response.append(requestMessage.getHttpVersion() +" "+statusCode.code+" "+statusCode.description + "\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n");
 
 
@@ -159,7 +155,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.METHOD_NOT_ALLOWED;
         response.append(requestMessage.getHttpVersion() +" "+statusCode.code+" "+statusCode.description + "\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n");
 
 
@@ -182,7 +177,6 @@ public class ResponseMessage {
         StringBuilder response = new StringBuilder();
         StatusCode statusCode = StatusCode.INTERNAL_SERVER_ERROR;
         response.append(requestMessage.getHttpVersion() +" "+statusCode.code+" "+statusCode.description + "\n");
-        response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n");
 
 

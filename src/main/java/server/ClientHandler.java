@@ -65,7 +65,7 @@ public class ClientHandler extends Thread {
         System.out.println(request);
         //先将报文头与实体（可有可无）分开,约定用两个换行符（"\n\n"）作为分割符
         String[] requestHead = request.split("\n\n")[0].split("\n|\r");
-        String requestEntity = request.split("\n\n").length > 1 ? request.split("\n\n")[2] : null;
+        String requestEntity = request.split("\n\n").length > 1 ? request.split("\n\n")[1] : null;
 
         String[] firstLine = requestHead[0].split(" ");
 
