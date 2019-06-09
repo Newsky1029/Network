@@ -28,38 +28,41 @@ public class ClientHandler extends Thread {
                 OutputStream outputStream = client.getOutputStream();
 
                 //实现长连接
-                while(!client.isClosed()) {
+                while (!client.isClosed()) {
+                    if (inputStream.available() > 0) {
+                        int lenInput = -1;
+                        String request = null;
+                        Thread.sleep(2000);
+                        while (lenInput <= 0) {
+                            byte inputData[] = new byte[inputStream.available()];   //准备一个缓存数组
+                            lenInput = inputStream.read(inputData);
+                            request = new String(inputData, 0, lenInput);  //将输入的字节数组转化为可操作的字符串
+                        }
 
-                    int lenInput = -1;
-                    String request = null;
+                        if (request != null) {
+                            //解析请求报文
+                            RequestMessage requestMessage = analysisResquestMessage(request);
 
-                    while (lenInput <= 0) {
-                        byte inputData[] = new byte[inputStream.available()];   //准备一个缓存数组
-                        lenInput = inputStream.read(inputData);
-                        request = new String(inputData, 0, lenInput);  //将输入的字节数组转化为可操作的字符串
-                    }
-
-                    if (request != null) {
-                        //解析请求报文
-                        RequestMessage requestMessage = analysisResquestMessage(request);
-
-                        /**
-                         * 根据请求报文得到响应报文
-                         */
-                        ResponseMessage responseMessage = new ResponseMessage(requestMessage);
-                        String response = responseMessage.makeResponseMessage();
-                        System.out.println(response);
-                        outputStream.write(response.getBytes()); //将响应报文内容写入
-                        outputStream.flush();
+                            /**
+                             * 根据请求报文得到响应报文
+                             */
+                            ResponseMessage responseMessage = new ResponseMessage(requestMessage);
+                            String response = responseMessage.makeResponseMessage();
+                            System.out.println(response);
+                            outputStream.write(response.getBytes()); //将响应报文内容写入
+                            outputStream.flush();
+                        }
                     }
                 }
-                //关闭客户端和服务端的流
-                inputStream.close();
-                outputStream.close();
-                client.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    //关闭客户端和服务端的流
+                    inputStream.close();
+                    outputStream.close();
+                    client.close();
+                } catch(IOException e){
+                    e.printStackTrace();
+                } catch(InterruptedException e){
+                    e.printStackTrace();
+                }
     }
 
     public RequestMessage analysisResquestMessage(String request){

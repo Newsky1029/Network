@@ -1,7 +1,9 @@
 package server;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import javax.imageio.stream.FileImageOutputStream;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -87,6 +89,25 @@ public class ResponseMessage {
         response.append("Server:"+"Ubuntu18.04"+"\n");
         response.append("Date:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"\n");
         response.append("Content_Type:"+requestMessage.getRequestType()+"\n");
+
+        if("POST".equals(requestMessage.getRequsetMethod())){
+            try {
+                //解密
+                byte[] data = Base64.decode(requestMessage.getRequestEntity());
+                //处理数据
+                for (int i = 0; i < data.length; i++) {
+                    if (data[i] < 0) data[i] += 256;
+                }
+                FileOutputStream fileOutputStream = new FileOutputStream(path + requestMessage.getUrl());
+                fileOutputStream.write(data);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                return Response500();
+            }
+        }
+
 
         try{
             //将文件中的数据（客户端请求的内容）读入

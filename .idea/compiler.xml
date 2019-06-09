@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Network" />
         <module name="network" />
+        <module name="computerNet" />
+        <module name="Network" />
       </profile>
     </annotationProcessing>
   </component>
