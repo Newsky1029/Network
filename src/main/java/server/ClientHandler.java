@@ -55,14 +55,14 @@ public class ClientHandler extends Thread {
                     }
                 }
                     //关闭客户端和服务端的流
-                    inputStream.close();
-                    outputStream.close();
-                    client.close();
-                } catch(IOException e){
-                    e.printStackTrace();
-                } catch(InterruptedException e){
-                    e.printStackTrace();
-                }
+                inputStream.close();
+                outputStream.close();
+                client.close();
+            } catch(IOException e){
+                e.printStackTrace();
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
     }
 
     public RequestMessage analysisResquestMessage(String request){
